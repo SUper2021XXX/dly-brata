@@ -9,12 +9,25 @@ function getAccel(){
                 if (response == 'granted') {
 
 
-      function show() {
-        alert("Screen orientation state is now " + screen.orientation);
-      }
-
-      screen.addEventListener("orientationchange", show);
-      window.addEventListener("load", show);
+                 
+  /**
+   * we are locking mobile devices orientation to portrait mode only
+   */
+  var devWidth, devHeight;
+  window.addEventListener('load', function() {
+    devWidth  = screen.width;
+    devHeight = screen.height;
+  });
+  window.addEventListener('orientationchange', function () {
+    if (devWidth < 768 && (window.orientation === 90 || window.orientation == -90)) {
+      document.body.style.width = devWidth + 'px';
+      document.body.style.height = devHeight + 'px';
+      document.body.style.transform = 'rotate(90deg)';
+      document.body.style.transformOrigin = ''+(devHeight/2)+'px '+(devHeight/2)+'px';
+    } else {
+      document.body.removeAttribute('style');
+    }
+  }, true);
 
     }
             });
@@ -23,12 +36,7 @@ function getAccel(){
     </script>
   </head>
   <body>
-    <input type='button' value='Unlock'
-      onclick='screen.unlockOrientation();'>
-    <input type='button' value='Lock to portrait'
-      onclick="screen.lockOrientation('portrait');">
-    <input type='button' value='Lock to landscape'
-      onclick="screen.lockOrientation('landscape');">
+   
       <input type='button' value='Acc'
       onclick="getAccel();">
   </body>
