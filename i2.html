@@ -20,7 +20,7 @@
                         else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
 
                         screen.orientation.lock(orientation);
-                    }
+                    };
 
                     // UNLOCK ORIENTATION
                     function unlock () {
@@ -29,18 +29,18 @@
                         else if (document.webkitExitFullscreen) { document.webkitExitFullScreen(); }
                         else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
                         else if (document.msExitFullscreen) { document.msExitFullscreen(); }            
-                    }    
+                    };    
 
                 }
             });
-        }
+        };
 
     </script>
 </head>
 <body>
-    <input type="button" value="Activate to IPhone" onclick="getAccel()"/>
-    <input type="button" value="Lock Portrait" onclick="lock('portrait')"/>
-    <input type="button" value="Lock Landscape" onclick="lock('landscape')"/>
-    <input type="button" value="Unlock" onclick="unlock()"/>
+    <input type="button" value="Activate to IPhone" onclick="getAccel();"/>
+    <input type="button" value="Lock Portrait" onclick="lock('portrait');"/>
+    <input type="button" value="Lock Landscape" onclick="lock('landscape');"/>
+    <input type="button" value="Unlock" onclick="unlock();"/>
 </body>
 </html>
