@@ -1,0 +1,75 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Accelerometer Demo</title>
+
+    <style>
+    .indicatorDot{
+        width: 30px;
+        height: 30px;
+        background-color: #ffab56;
+        border-radius: 50%;
+        position:fixed;
+    }
+    </style>
+
+
+
+
+</head>
+<body style="background-color:lightblue;">
+
+
+    
+
+    <button id="accelPermsButton" onclick="getAccel()" style="height:50px;">Get Accelerometer Permissions</button>
+    <body>
+        <button onclick="start()" class="lock"> Full Screen  And Orientation Lock</button>
+        <button onclick="closeFullscreen()" class="unlock">Exit full screen and lock</button>
+      </body>
+
+    <script>    
+
+        function getAccel(){
+            DeviceMotionEvent.requestPermission().then(response => {
+                if (response == 'granted') {
+               // Add a listener to get smartphone orientation 
+                   // in the alpha-beta-gamma axes (units in degrees)
+                  
+        
+                   function ready() {
+        const {
+            type
+        } = screen.orientation;
+    }
+    var elem = document.documentElement;
+    async function start() {
+        await document.documentElement.webkitRequestFullScreen();
+        await screen.orientation.lock("portrait");
+        ready();
+    }
+function closeFullscreen() {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.mozCancelFullScreen) { /* Firefox */
+    document.mozCancelFullScreen();
+  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE/Edge */
+    document.msExitFullscreen();
+  }
+}   
+                
+        
+        
+                }
+            });
+        }
+        
+        </script>
+
+</body>
+</html>
