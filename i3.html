@@ -39,29 +39,9 @@
                // Add a listener to get smartphone orientation 
                    // in the alpha-beta-gamma axes (units in degrees)
                   
-        
-                   function ready() {
-        const {
-            type
-        } = screen.orientation;
-    }
-    var elem = document.documentElement;
-    async function start() {
-        await document.documentElement.webkitRequestFullScreen();
-        await screen.orientation.lock("portrait");
-        ready();
-    }
-function closeFullscreen() {
-  if (document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if (document.mozCancelFullScreen) { /* Firefox */
-    document.mozCancelFullScreen();
-  } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
-    document.webkitExitFullscreen();
-  } else if (document.msExitFullscreen) { /* IE/Edge */
-    document.msExitFullscreen();
-  }
-}   
+    
+    
+                   var alowed = window.screen.orientation.lock("portrait");
                 
         
         
