@@ -1,81 +1,33 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Accelerometer Demo</title>
+<html>
+  <head>
+    <title>Screen Orientation API Example 1</title>
+    <script>
 
-    <style>
-    .indicatorDot{
-        width: 30px;
-        height: 30px;
-        background-color: #ffab56;
-        border-radius: 50%;
-        position:fixed;
-    }
-    </style>
-
-
-
-
-</head>
-<body style="background-color:lightblue;">
-
-   
-    
-
-    <button id="accelPermsButton" onclick="getAccel()" style="height:50px;">Get Accelerometer Permissions</button>
-    <button onclick="rotate(this)" id="button">
-        Lock to...
-      </button>
-      <button onclick="screen.orientation.unlock()">
-        Unlock
-      </button>
-              
-
-    <script>    
-
-        function getAccel(){
+function getAccel(){
             DeviceMotionEvent.requestPermission().then(response => {
                 if (response == 'granted') {
-               // Add a listener to get smartphone orientation 
-                   // in the alpha-beta-gamma axes (units in degrees)
-                  
-    
-                
-function updateLockButton() {
-  const lockButton = document.getElementById("button");
-  const newOrientation = getOppositeOrientation();
-  lockButton.textContent = `Lock to ${newOrientation}`;
-}
-
-function getOppositeOrientation() {
-  return screen
-    .orientation
-    .startsWith("portrait") ? "landscape" : "portrait";
-}
-
-async function rotate(lockButton) {
-  if (!document.fullscreenElement) {
-    await document.documentElement.requestFullscreen();
-  }
-  const newOrientation = getOppositeOrientation();
-  await screen.orientation.lock(newOrientation);
-  updateLockButton(lockButton);
-}
-
-screen.orientation.addEventListener("change", updateLockButton);
-
-window.addEventListener("load", updateLockButton);
 
 
+      function show() {
+        alert("Screen orientation state is now " + screen.orientation);
+      }
 
-                }
+      screen.addEventListener("orientationchange", show);
+      window.addEventListener("load", show);
+
+    }
             });
-        }
-        
-        </script>
+        };
 
-</body>
+    </script>
+  </head>
+  <body>
+    <input type='button' value='Unlock'
+      onclick='screen.unlockOrientation();'>
+    <input type='button' value='Lock to portrait'
+      onclick="screen.lockOrientation('portrait');">
+    <input type='button' value='Lock to landscape'
+      onclick="screen.lockOrientation('landscape');">
+  </body>
 </html>
