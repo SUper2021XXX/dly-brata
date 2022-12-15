@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "cordova-plugin-screen-orientation": "^3.0.2"
+  }
+}
