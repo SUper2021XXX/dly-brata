@@ -2,6 +2,9 @@
 <html>
   <head>
     <title>Screen Orientation API Example 1</title>
+   
+        
+  
     <script>
 
 function getAccel(){
@@ -9,25 +12,39 @@ function getAccel(){
                 if (response == 'granted') {
 
 
-                 
-  /**
-   * we are locking mobile devices orientation to portrait mode only
-   */
-  var devWidth, devHeight;
-  window.addEventListener('load', function() {
-    devWidth  = screen.width;
-    devHeight = screen.height;
-  });
-  window.addEventListener('orientationchange', function () {
-    if (devWidth < 768 && (window.orientation === 90 || window.orientation == -90)) {
-      document.body.style.width = devWidth + 'px';
-      document.body.style.height = devHeight + 'px';
-      document.body.style.transform = 'rotate(90deg)';
-      document.body.style.transformOrigin = ''+(devHeight/2)+'px '+(devHeight/2)+'px';
-    } else {
-      document.body.removeAttribute('style');
-    }
-  }, true);
+//This code consider you are using the fullscreen portrait mode
+function processOrientation(forceOrientation) {
+  var orientation = window.orientation;
+  if (forceOrientation != undefined)
+    orientation = forceOrientation;
+  var domElement = document.getElementById('fullscreen-element-div');
+  switch(orientation) {
+    case 90:
+      var width = window.innerHeight;
+      var height = window.innerWidth;
+      domElement.style.width = "100vh";
+      domElement.style.height = "100vw";
+      domElement.style.transformOrigin="50% 50%";
+      domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(-90deg)";
+      break;
+    case -90:
+      var width = window.innerHeight;
+      var height = window.innerWidth;
+      domElement.style.width = "100vh";
+      domElement.style.height = "100vw";
+      domElement.style.transformOrigin="50% 50%";
+      domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(90deg)";
+      break;
+    default:
+      domElement.style.width = "100vw";
+      domElement.style.height = "100vh";
+      domElement.style.transformOrigin="";
+      domElement.style.transform="";
+      break;
+  }
+}
+window.addEventListener('orientationchange', processOrientation);
+processOrientation();
 
     }
             });
@@ -35,9 +52,16 @@ function getAccel(){
 
     </script>
   </head>
-  <body>
-   
-      <input type='button' value='Acc'
-      onclick="getAccel();">
-  </body>
+  
+    <body style="margin:0;padding:0;overflow: hidden;">
+        <div id="fullscreen-element-div" style="background-color:#00ff00;width:100vw;height:100vh;margin:0;padding:0"> Test
+        <br>
+        <input type="button" value="force 90" onclick="processOrientation(90);" /><br>
+        <input type="button" value="force -90" onclick="processOrientation(-90);" /><br>
+        <input type="button" value="back to normal" onclick="processOrientation();" /><br>
+        <input type='button' value='Acc' onclick="getAccel();">
+        </div>
+      </body>
+     
+  
 </html>
