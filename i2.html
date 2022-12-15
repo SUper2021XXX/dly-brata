@@ -19,12 +19,12 @@
                         else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
                         else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
 
-                        screen.orientation.lock(orientation);
+                        window.orientation.lock(orientation);
                     };
 
                     // UNLOCK ORIENTATION
                     function unlock () {
-                        screen.orientation.unlock();
+                        window.orientation.unlock();
                         if (document.exitFullscreen) { document.exitFullscreen(); }
                         else if (document.webkitExitFullscreen) { document.webkitExitFullScreen(); }
                         else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
