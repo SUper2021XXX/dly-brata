@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Screen Orientation Lock</title>
+    <script>
+
+        function getAccel(){
+            DeviceMotionEvent.requestPermission().then(response => {
+                if (response == 'granted') {
+            
+                    // LOCK ORIENTATION - FULL SCREEN MUST BE ENGAGED
+                    function lock (orientation) {
+                        let de = document.documentElement;
+                        if (de.requestFullscreen) { de.requestFullscreen(); }
+                        else if (de.mozRequestFullScreen) { de.mozRequestFullScreen(); }
+                        else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
+                        else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
+
+                        screen.orientation.lock(orientation);
+                    }
+
+                    // UNLOCK ORIENTATION
+                    function unlock () {
+                        screen.orientation.unlock();
+                        if (document.exitFullscreen) { document.exitFullscreen(); }
+                        else if (document.webkitExitFullscreen) { document.webkitExitFullScreen(); }
+                        else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
+                        else if (document.msExitFullscreen) { document.msExitFullscreen(); }            
+                    }
+
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" value="Lock Portrait" onclick="getAccel()"/>
+    <input type="button" value="Lock Portrait" onclick="lock('portrait')"/>
+    <input type="button" value="Lock Landscape" onclick="lock('landscape')"/>
+    <input type="button" value="Unlock" onclick="unlock()"/>
+</body>
+</html>
