@@ -4,47 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Screen Orientation Lock</title>
+    <script>
+        // LOCK ORIENTATION - FULL SCREEN MUST BE ENGAGED
+        function lock (Orientation) {
+            let de = document.documentElement;
+            if (de.requestFullscreen) { de.requestFullscreen(); }
+            else if (de.mozRequestFullscreen) { de.mozRequestFullScreen(); }
+            else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
+            else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
+
+            screen.orientation.lock(orientation);
+        }
+
+        // UNLOCK ORIENTATION
+        function unlock () {
+            screen.orientation.unlock();
+            if (document.exitFullcscreen) { document.exitFullscreen(); }
+            else if (document.mozRequestFullscreen) { document.webkitExitFullScreen(); }
+            else if (document.webkitRequestFullscreen) { document.mozCancelFullScreen(); }
+            else if (document.msRequestFullscreen) { document.msExitFullScreen(); }            
+        }
+    </script>
 </head>
 <body>
-
-    <div>
-        <h1>Text</h1>
-    </div>
-    
-    
-    <script>
-        function updateLockButton() {
-          const lockButton = document.getElementById("button");
-          const newOrientation = getOppositeOrientation();
-          lockButton.textContent = `Lock to ${newOrientation}`;
-        }
-        
-        function getOppositeOrientation() {
-          return screen
-            .orientation
-            .startsWith("portrait") ? "landscape" : "portrait";
-        }
-        
-        async function rotate(lockButton) {
-          if (!document.fullscreenElement) {
-            await document.documentElement.requestFullscreen();
-          }
-          const newOrientation = getOppositeOrientation();
-          await screen.orientation.lock(newOrientation);
-          updateLockButton(lockButton);
-        }
-        
-        screen.orientation.addEventListener("change", updateLockButton);
-        
-        window.addEventListener("load", updateLockButton);
-        </script>
-        
-        <button onclick="rotate(this)" id="button">
-          Lock to...
-        </button>
-        <button onclick="screen.orientation.unlock()">
-          Unlock
-        </button>
+    <input type="button" value="Lock Portrait" onclick="lock('portrait')"/>
+    <input type="button" value="Lock Landscape" onclick="lock('landscape')"/>
+    <input type="button" value="Unlock" onclick="unlock()"/>
 </body>
 </html>
