@@ -7,10 +7,10 @@
     <title>Screen Orientation Lock</title>
     <script>
         // LOCK ORIENTATION - FULL SCREEN MUST BE ENGAGED
-        function lock (Orientation) {
+        function lock (orientation) {
             let de = document.documentElement;
             if (de.requestFullscreen) { de.requestFullscreen(); }
-            else if (de.mozRequestFullscreen) { de.mozRequestFullScreen(); }
+            else if (de.mozRequestFullScreen) { de.mozRequestFullScreen(); }
             else if (de.webkitRequestFullscreen) { de.webkitRequestFullscreen(); }
             else if (de.msRequestFullscreen) { de.msRequestFullscreen(); }
 
@@ -20,10 +20,10 @@
         // UNLOCK ORIENTATION
         function unlock () {
             screen.orientation.unlock();
-            if (document.exitFullcscreen) { document.exitFullscreen(); }
-            else if (document.mozRequestFullscreen) { document.webkitExitFullScreen(); }
-            else if (document.webkitRequestFullscreen) { document.mozCancelFullScreen(); }
-            else if (document.msRequestFullscreen) { document.msExitFullScreen(); }            
+            if (document.exitFullscreen) { document.exitFullscreen(); }
+            else if (document.webkitExitFullscreen) { document.webkitExitFullScreen(); }
+            else if (document.mozCancelFullScreen) { document.mozCancelFullScreen(); }
+            else if (document.msFullScreen) { document.mozCancelFullScreen(); }            
         }
     </script>
 </head>
