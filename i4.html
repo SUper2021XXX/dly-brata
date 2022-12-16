@@ -12,7 +12,7 @@
     <div>
         <h1>text h1</h1>
         <input type="button" value="Activate to IPhone" onclick="getAccel();"/>
-        <input type="button" value="Activate to IPhone" onclick="window.screen.orientation.lock('landscape');"/>
+        <input type="button" value="Activate to IPhone" onclick="start();"/>
         <input type="button" value="Activate to IPhone" onclick="window.screen.orientation.unlock();"/>
     </div>
    
@@ -22,12 +22,18 @@ function getAccel(){
             DeviceMotionEvent.requestPermission().then(response => {
                 if (response == 'granted') {
 
+
+                    function start () {
+                        return window.screen.orientation.lock('landscape');
+                    }
         
-        alert('Orientation is ' + window.screen.orientation.type);
+      
 
     }
             });
         }
+
+        alert('Orientation is ' + window.screen.orientation.type);
 
     </script>
 </body>
