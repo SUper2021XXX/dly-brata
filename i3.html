@@ -5,52 +5,6 @@
    
         
   
-    <script>
-
-function getAccel(){
-            DeviceMotionEvent.requestPermission().then(response => {
-                if (response == 'granted') {
-
-
-//This code consider you are using the fullscreen portrait mode
-function processOrientation(forceOrientation) {
-  var orientation = window.orientation;
-  if (forceOrientation != undefined)
-    orientation = forceOrientation;
-  var domElement = document.getElementById('fullscreen-element-div');
-  switch(orientation) {
-    case 90:
-      var width = window.innerHeight;
-      var height = window.innerWidth;
-      domElement.style.width = "100vh";
-      domElement.style.height = "100vw";
-      domElement.style.transformOrigin="50% 50%";
-      domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(-90deg)";
-      break;
-    case -90:
-      var width = window.innerHeight;
-      var height = window.innerWidth;
-      domElement.style.width = "100vh";
-      domElement.style.height = "100vw";
-      domElement.style.transformOrigin="50% 50%";
-      domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(90deg)";
-      break;
-    default:
-      domElement.style.width = "100vw";
-      domElement.style.height = "100vh";
-      domElement.style.transformOrigin="";
-      domElement.style.transform="";
-      break;
-  }
-}
-window.addEventListener('orientationchange', processOrientation);
-processOrientation();
-
-    }
-            });
-        };
-
-    </script>
   </head>
   
     <body style="margin:0;padding:0;overflow: hidden;">
@@ -58,10 +12,51 @@ processOrientation();
         <br>
         <input type="button" value="force 90" onclick="processOrientation(90);" /><br>
         <input type="button" value="force -90" onclick="processOrientation(-90);" /><br>
-        <input type="button" value="back to normal" onclick="processOrientation();" /><br>
-        <input type='button' value='Acc' onclick="getAccel();">
+        <input type="button" value="back to normal" onclick="processOrientation();" />
         </div>
-      </body>
+
+        
+    <script>
+
+
+
+        //This code consider you are using the fullscreen portrait mode
+        function processOrientation(forceOrientation) {
+          var orientation = window.orientation;
+          if (forceOrientation != undefined)
+            orientation = forceOrientation;
+          var domElement = document.getElementById('fullscreen-element-div');
+          switch(orientation) {
+            case 90:
+              var width = window.innerHeight;
+              var height = window.innerWidth;
+              domElement.style.width = "100vh";
+              domElement.style.height = "100vw";
+              domElement.style.transformOrigin="50% 50%";
+              domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(-90deg)";
+              break;
+            case -90:
+              var width = window.innerHeight;
+              var height = window.innerWidth;
+              domElement.style.width = "100vh";
+              domElement.style.height = "100vw";
+              domElement.style.transformOrigin="50% 50%";
+              domElement.style.transform="translate("+(window.innerWidth/2-width/2)+"px, "+(window.innerHeight/2-height/2)+"px) rotate(90deg)";
+              break;
+            default:
+              domElement.style.width = "100vw";
+              domElement.style.height = "100vh";
+              domElement.style.transformOrigin="";
+              domElement.style.transform="";
+              break;
+          }
+        }
+        window.addEventListener('orientationchange', processOrientation);
+        processOrientation();
+        
+          
+            </script>
+    </body>
      
   
 </html>
