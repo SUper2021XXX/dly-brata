@@ -6,11 +6,11 @@ function getAccel(){
       if (response == 'granted') {
 
 
-          function start () {
+          function start() {
             return window.screen.orientation.lock('landscape');
           }
-          function message () {
-            return alert('test start')
+          function message() {
+            return alert('test start');
           }
 
 
