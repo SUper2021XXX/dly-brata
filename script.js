@@ -7,7 +7,10 @@ function getAccel(){
 
 
           function start () {
-              return window.screen.orientation.lock('landscape');
+            return window.screen.orientation.lock('landscape');
+          }
+          function message () {
+            return alert('test start')
           }
 
 
