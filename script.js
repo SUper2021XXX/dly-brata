@@ -1,4 +1,4 @@
-import * as cordova from "https://cdn.skypack.dev/cordova@11.0.0";
+
 
 
 
