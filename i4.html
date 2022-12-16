@@ -12,8 +12,8 @@
     <div>
         <h1>text h1</h1>
         <input type="button" value="Activate to IPhone" onclick="getAccel();"/>
-        <input type="button" value="Activate to IPhone" onclick="screen.orientation.lock('landscape');"/>
-        <input type="button" value="Activate to IPhone" onclick="screen.orientation.unlock();"/>
+        <input type="button" value="Activate to IPhone" onclick="window.screen.orientation.lock('landscape');"/>
+        <input type="button" value="Activate to IPhone" onclick="window.screen.orientation.unlock();"/>
     </div>
    
     <script>
@@ -23,7 +23,7 @@ function getAccel(){
                 if (response == 'granted') {
 
         
-        alert('Orientation is ' + screen.orientation.type);
+        alert('Orientation is ' + window.screen.orientation.type);
 
     }
             });
