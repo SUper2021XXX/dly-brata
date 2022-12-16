@@ -1,9 +1,7 @@
 import * as cordova from "https://cdn.skypack.dev/cordova@11.0.0";
 
 
-function getAccel(){
-  DeviceMotionEvent.requestPermission().then(response => {
-      if (response == 'granted') {
+
 
 
           function start() {
@@ -15,8 +13,6 @@ function getAccel(){
 
 
 
-}
-  });
-}
+
 
 alert('Orientation is ' + window.screen.orientation.type);
